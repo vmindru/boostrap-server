@@ -1,0 +1,6 @@
+---
+# handlers file for bootstrap-server
+- name: restart sshd
+  service: 
+    name: "sshd" 
+    state: "restarted"

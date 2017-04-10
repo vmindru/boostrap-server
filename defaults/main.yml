@@ -1,0 +1,22 @@
+---
+# defaults file for bootstrap-server
+#
+
+boostrap_users: []                  # list of users to add to the server
+boostrap_enable_firewall: True      # Make sure firewall is enabled allowing only SSH access
+boostratp_enable_selinux: True      # Make sure selinux is enabled
+bootsrap_sudo: True                 # grant sudo access to boostrap_users
+bootsrap_lock_roouser: True         # Lock direct root user access
+bootstrap_basic_rpm: []             # List of rpm files to install
+bootstrap_keys: {}                  # keys to provision 
+bootstrap_admin_group: "wheel"      # admin group 
+bootstrap_sshd_config: "/etc/ssh/sshd_config" # default SSHD config file
+
+
+
+#boostrap_keys object example
+#boostrap_keys:
+#  - vmindru:
+#      user: "vmindru"
+#      key: "{{ lookup('file', '../vmindru.pub') }}"
+#      state: "present"

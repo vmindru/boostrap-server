@@ -1,0 +1,8 @@
+galaxy_info:
+  author: Veaceslav Mindru
+  description: boostrap server with default settings
+  company: Red Hat
+  license: GNU GPLv3
+  min_ansible_version: 2.2
+  galaxy_tags: []
+dependencies: []
