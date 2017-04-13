@@ -1,0 +1,11 @@
+---
+
+- name: install repos
+  yum_repository:
+    name:  "{{ item.key }}"
+    description:  "{{ item.value.description }}"
+    baseurl: "{{ item.value.baseurl }}"
+    gpgcheck: "no"
+  with_dict: " {{ repos|default({})  }}"
+
+

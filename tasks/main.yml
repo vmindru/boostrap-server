@@ -51,3 +51,9 @@
     line: "PasswordAuthentication no"
   notify: restart sshd
   when: add_ssh_key|success and not add_ssh_key|skipped
+
+
+- name: include repos
+  include: repos.yml
+  when:  repos is defined
+ 
