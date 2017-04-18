@@ -6,6 +6,6 @@
     description:  "{{ item.value.description }}"
     baseurl: "{{ item.value.baseurl }}"
     gpgcheck: "no"
-  with_dict: " {{ repos|default({})  }}"
+  with_dict: " {{ bootstrap_repos|default({})  }}"
 
 

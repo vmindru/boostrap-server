@@ -2,58 +2,14 @@
 # tasks file for bootstrap-server
 #
 
-- name: create admin group
-  group:
-    name: "{{ bootstrap_admin_group }}"
-
-- name: grant admin group sudo access
-  lineinfile: 
-    dest: /etc/sudoers
-    regexp: "{{ bootstrap_admin_group }} ALL"
-    line: "%{{ bootstrap_admin_group }} ALL=(ALL) NOPASSWD: ALL"
-    state: present
-    validate: 'visudo -cf %s'
-
-- name: add users
-  user:
-    name: "{{ item }}"
-    group: "{{ bootstrap_admin_group }}"
-  with_items:
-    - "{{ bootstrap_users }}"
-
-- name: SSH keys 
-  authorized_key:  
-    exclusive: no
-    key: "{{ item.value.key }}"
-    state: "{{ item.value.state }}"
-    user: "{{ item.value.user }}"
-  with_dict: "{{ bootstrap_keys }}"
-  register: add_ssh_key
-
-- name: Disable empty password login
-  lineinfile: 
-    dest: "{{ bootstrap_sshd_config }}" 
-    regexp: "^#?PermitEmptyPasswords" 
-    line: "PermitEmptyPasswords no"
-  notify: restart sshd
-
-- name: Disable remote root login
-  lineinfile: 
-    dest: "{{ bootstrap_sshd_config }}"
-    regexp: "^#?PermitRootLogin" 
-    line: "PermitRootLogin no"
-  notify: restart sshd
-
-- name: Disable password login
-  lineinfile: 
-    dest: "{{ bootstrap_sshd_config }}" 
-    regexp: "^#?PasswordAuthentication" 
-    line: "PasswordAuthentication no"
-  notify: restart sshd
-  when: add_ssh_key|success and not add_ssh_key|skipped
-
+- name: include base bootstrap 
+  include: base.yml
+  when: bootstrap_base 
 
 - name: include repos
   include: repos.yml
-  when:  repos is defined
+  when:  bootstrap_repos is defined
  
+- name: include install packages
+  include: packages.yml
+  when:  bootstrap_packages is defined

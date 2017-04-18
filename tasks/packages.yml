@@ -1,0 +1,9 @@
+---
+
+- name: install package
+  package:
+    name:  "{{ item.value.name }}"
+    state: "{{ item.value.state }}"
+  with_dict: " {{ bootstrap_packages|default({})  }}"
+
+
