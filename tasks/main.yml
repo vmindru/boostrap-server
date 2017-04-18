@@ -6,6 +6,9 @@
   include: base.yml
   when: bootstrap_base 
 
+- name: include files
+  inclide: files.yml
+
 - name: include repos
   include: repos.yml
   when:  bootstrap_repos is defined
@@ -13,3 +16,5 @@
 - name: include install packages
   include: packages.yml
   when:  bootstrap_packages is defined
+
+
