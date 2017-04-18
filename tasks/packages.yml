@@ -6,4 +6,12 @@
     state: "{{ item.value.state }}"
   with_dict: " {{ bootstrap_packages|default({})  }}"
 
+- name: starting services
+  service:
+    name:  "{{ item.value.name }}"
+    state: "{{ item.value.state }}"
+    enabled: "{{ item.value.enabled }}"
+  with_dict: " {{ bootstrap_service|default({})  }}"
+
+
 

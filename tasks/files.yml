@@ -1,10 +1,10 @@
 ---
 
 - name: remove files
-  package:
+  file:
     name:  "{{ item.value.name }}"
     state: "{{ item.value.state }}"
-  with_files: " {{ bootstrap_files|default({})  }}"
-  when: boostrap_remove_files is defined
+  with_dict: " {{ bootstrap_files|default({})  }}"
+  when: bootstrap_files is defined
 
 

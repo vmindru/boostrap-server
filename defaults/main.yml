@@ -2,7 +2,7 @@
 # defaults file for bootstrap-server
 #
 
-bootstrap_base: True 
+bootstrap_base: True                # if set to False will skip base bootstrap
 boostrap_users: []                  # list of users to add to the server
 boostrap_enable_firewall: True      # Make sure firewall is enabled allowing only SSH access
 boostratp_enable_selinux: True      # Make sure selinux is enabled

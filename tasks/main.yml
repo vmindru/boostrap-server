@@ -6,8 +6,12 @@
   include: base.yml
   when: bootstrap_base 
 
+- name: include boostrap dns
+  include: resolv.yml
+  when:  bootstrap_dns_servers is defined
+
 - name: include files
-  inclide: files.yml
+  include: files.yml
 
 - name: include repos
   include: repos.yml
