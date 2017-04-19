@@ -1,0 +1,21 @@
+---
+
+- name: install package
+  package:
+    name:  "{{ item.value.name }}"
+    state: "{{ item.value.state }}"
+  with_dict: " {{ bootstrap_packages|default({}) }}"
+  tags:
+  - skip_ansible_lint
+
+- name: starting services
+  service:
+    name:  "{{ item.value.name }}"
+    state: "{{ item.value.state }}"
+    enabled: "{{ item.value.enabled }}"
+  with_dict: " {{ bootstrap_service|default({}) }}"
+  tags:
+  - skip_ansible_lint
+
+
+
