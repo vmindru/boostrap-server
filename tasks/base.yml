@@ -10,13 +10,15 @@
     line: "%{{ bootstrap_admin_group }} ALL=(ALL) NOPASSWD: ALL"
     state: present
     validate: 'visudo -cf %s'
+  tags:
+  - skip_ansible_lint
 
 - name: add users
   user:
     name: "{{ item }}"
     group: "{{ bootstrap_admin_group }}"
   with_items:
-    - "{{ bootstrap_users }}"
+  - "{{ bootstrap_users }}"
 
 - name: SSH keys 
   authorized_key:  
@@ -33,6 +35,8 @@
     regexp: "^#?PermitEmptyPasswords" 
     line: "PermitEmptyPasswords no"
   notify: restart sshd
+  tags:
+  - skip_ansible_lint
 
 - name: Disable remote root login
   lineinfile: 
@@ -40,6 +44,8 @@
     regexp: "^#?PermitRootLogin" 
     line: "PermitRootLogin no"
   notify: restart sshd
+  tags:
+  - skip_ansible_lint
 
 - name: Disable password login
   lineinfile: 
@@ -48,3 +54,5 @@
     line: "PasswordAuthentication no"
   notify: restart sshd
   when: add_ssh_key|success and not add_ssh_key|skipped
+  tags:
+  - skip_ansible_lint

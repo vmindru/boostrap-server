@@ -4,7 +4,7 @@
   file:
     name:  "{{ item.value.name }}"
     state: "{{ item.value.state }}"
-  with_dict: " {{ bootstrap_files|default({})  }}"
+  with_dict: "{{ bootstrap_files|default({}) }}"
   when: bootstrap_files is defined
 
 

@@ -7,5 +7,7 @@
     baseurl: "{{ item.value.baseurl }}"
     gpgcheck: "no"
   with_dict: " {{ bootstrap_repos|default({})  }}"
+  tags:
+  - skip_ansible_lint
 
 

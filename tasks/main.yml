@@ -1,6 +1,4 @@
 ---
-# tasks file for bootstrap-server
-#
 
 - name: include base bootstrap 
   include: base.yml
