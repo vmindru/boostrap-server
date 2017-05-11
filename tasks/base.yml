@@ -46,6 +46,7 @@
   notify: restart sshd
   tags:
   - skip_ansible_lint
+  when: disable_root_login
 
 - name: Disable password login
   lineinfile: 
