@@ -12,7 +12,7 @@ bootstrap_basic_rpm: []             # List of rpm files to install
 bootstrap_keys: {}                  # keys to provision 
 bootstrap_admin_group: "wheel"      # admin group 
 bootstrap_sshd_config: "/etc/ssh/sshd_config" # default SSHD config file
-disable_root_login: True            # disable root login
+disable_root_login: False            # disable root login
 
 
 
